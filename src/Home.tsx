@@ -1,5 +1,5 @@
 
-function App() {
+function Home() {
 	return (
 		<>
 			<div className='bg-red-500'>
@@ -9,4 +9,4 @@ function App() {
 	)
 }
 
-export default App
+export default Home
