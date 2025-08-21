@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage";
 import type { listaListagem } from "../types/lista.d";
+import { formatarChavePix, formatarDinheiro } from "../utils/formatar";
 import { getRequest } from "../utils/requests";
 
 function Lista() {
@@ -27,10 +28,43 @@ function Lista() {
         return <LoadingPage />
 
     return (
-        <div className='w-screen h-screen bg-[#F8F9FA]'>
-            <div>
-                <h1>Olá, seja muito bem vindo(a)!</h1>
-                <h2>Esta é a lista de presentes de {lista?.usuario?.nome}!</h2>
+        <div className='w-screen h-screen bg-[#F8F9FA] text-[#2C3E50] pt-12'>
+            <div className="space-y-6 max-w-4xl mx-auto px-4">
+                <p className="text-center text-lg font-semibold">
+                    <h1 className="text-center">Olá, seja muito bem vindo(a)!</h1>
+                </p>
+
+                <p className="text-center">
+                    <h2>
+                        Esta é a lista de presentes de <br />
+                        <span className="font-bold">{lista?.usuario?.nome}!</span>
+                    </h2>
+                </p>
+
+                <p className="text-center">
+                    <h2>Você pode selecionar um ou mais itens para presentear em seu <span className="font-bold">chá de bebê!</span></h2>
+                    <h2>Além disso, você pode usar o QRCode ou o Pix abaixo para presentear com <span className="font-bold">{formatarDinheiro(1000)}</span> ou o que o seu coração mandar!</h2>
+                </p>
+
+                <div>
+                    <img src="src\assets\qrcode.png" alt="QRCode Pix" className="w-1/3 mx-auto" />
+
+                    <p className="text-center mt-2">
+                        Ou pela chave: <br />
+                        <span className="font-bold">{formatarChavePix(lista?.chavePix || "", "cpf")}</span>
+                    </p>
+                </div>
+
+                <div className="mt-12">
+                    <h2 className="text-center">
+                        Selecione abaixo um ou mais presentes e confirme!<br />
+                        Alguns presentes podem ser repetidos.
+                    </h2>
+                </div>
+
+                <div className="w-full h-12 bg-white rounded-lg border border-[#2C3E50] drop-shadow-sm">
+
+                </div>
             </div>
         </div>
     )
